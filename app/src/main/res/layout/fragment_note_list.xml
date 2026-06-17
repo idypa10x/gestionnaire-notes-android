@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8">
+
+    <!-- ÉTAT VIDE : visible quand il n'y a aucune note -->
+    <LinearLayout
+        android:id="@+id/layout_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aucune notes"
+            android:textColor="#9E9E9E"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <!-- LISTE : RecyclerView des notes -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_notes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="8dp"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false"
+        android:visibility="visible" />
+
+    <!-- Bouton flottant (+) pour créer une note -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="Ajouter une note"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="#2F80ED"
+        app:tint="@android:color/white" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
