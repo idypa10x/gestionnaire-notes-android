@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/formContainer"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#FFFFFF">
+    android:background="@color/background">
 
+    <!-- Zone de saisie avec couleur de fond -->
     <LinearLayout
-        android:id="@+id/noteCard"
+        android:id="@+id/layoutForm"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
         android:padding="16dp"
-        android:background="#219653">
+        android:background="@color/green"
+        android:layout_margin="16dp">
 
+        <!-- Titre -->
         <EditText
-            android:id="@+id/etTitle"
+            android:id="@+id/editTitre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Titre"
+            android:hint="@string/titre_hint"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="#000000"
-            android:textColorHint="#80000000"
+            android:textColor="@color/white"
+            android:textColorHint="#AAFFFFFF"
             android:background="@android:color/transparent"
-            android:inputType="textCapSentences"
-            android:padding="4dp"/>
+            android:layout_marginBottom="12dp"/>
 
+        <!-- Contenu -->
         <EditText
-            android:id="@+id/etContent"
+            android:id="@+id/editContenu"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:hint="Contenu"
+            android:hint="@string/contenu_hint"
             android:textSize="14sp"
-            android:textColor="#000000"
-            android:textColorHint="#80000000"
+            android:textColor="@color/white"
+            android:textColorHint="#AAFFFFFF"
             android:background="@android:color/transparent"
-            android:inputType="textMultiLine|textCapSentences"
             android:gravity="top"
-            android:padding="4dp"/>
+            android:inputType="textMultiLine"/>
 
     </LinearLayout>
 
+    <!-- Bouton Créer / Modifier -->
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnSauvegarder"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:text="Créer"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:text="@string/creer"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#000000"/>
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"/>
 
 </LinearLayout>
