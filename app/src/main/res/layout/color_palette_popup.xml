@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="8dp">
+
+    <ImageButton
+        android:id="@+id/btnColorVert"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="6dp"
+        android:background="@drawable/circle_green"
+        android:contentDescription="Vert"/>
+
+    <ImageButton
+        android:id="@+id/btnColorRouge"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="6dp"
+        android:background="@drawable/circle_red"
+        android:contentDescription="Rouge"/>
+
+    <ImageButton
+        android:id="@+id/btnColorBleu"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="6dp"
+        android:background="@drawable/circle_blue"
+        android:contentDescription="Bleu"/>
+
+    <ImageButton
+        android:id="@+id/btnColorJaune"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="6dp"
+        android:background="@drawable/circle_yellow"
+        android:contentDescription="Jaune"/>
+
+    <ImageButton
+        android:id="@+id/btnColorOrange"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="6dp"
+        android:background="@drawable/circle_orange"
+        android:contentDescription="Orange"/>
+
+    <ImageButton
+        android:id="@+id/btnColorGris"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="6dp"
+        android:background="@drawable/circle_gray"
+        android:contentDescription="Gris"/>
+
+</LinearLayout>
