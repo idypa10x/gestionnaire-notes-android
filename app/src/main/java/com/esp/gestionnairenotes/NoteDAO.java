@@ -65,6 +65,34 @@ public class NoteDAO {
         }
         return notes;
     }
+    // Récupérer une note par son id
+    public Note getNoteById(int id) {
+        Note note = null;
+        Cursor cursor = db.query(
+                NoteDatabase.TABLE_NOTES,
+                null,
+                NoteDatabase.COL_ID + " = ?",
+                new String[]{String.valueOf(id)},
+                null, null, null
+        );
+
+        if (cursor != null) {
+            try {
+                if (cursor.moveToFirst()) {
+                    note = new Note();
+                    note.setId(cursor.getInt(cursor.getColumnIndexOrThrow(NoteDatabase.COL_ID)));
+                    note.setTitre(cursor.getString(cursor.getColumnIndexOrThrow(NoteDatabase.COL_TITRE)));
+                    note.setContenu(cursor.getString(cursor.getColumnIndexOrThrow(NoteDatabase.COL_CONTENU)));
+                    note.setCouleur(cursor.getString(cursor.getColumnIndexOrThrow(NoteDatabase.COL_COULEUR)));
+                    note.setFavori(cursor.getInt(cursor.getColumnIndexOrThrow(NoteDatabase.COL_FAVORI)) == 1);
+                    note.setDate(cursor.getString(cursor.getColumnIndexOrThrow(NoteDatabase.COL_DATE)));
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        return note;
+    }
 
     // Modifier une note
     public int modifierNote(Note note) {
