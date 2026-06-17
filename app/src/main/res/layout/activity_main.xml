@@ -1,19 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-compat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#FFFFFF">
 
-    <TextView
+    <!-- Zone principale : liste des notes (Personne 2 s'en charge) -->
+    <LinearLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Barre recherche + bouton Favoris (Personne 5) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <EditText
+                android:id="@+id/searchInput"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:hint="Rechercher"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:paddingStart="12dp"
+                android:background="@drawable/bg_search"
+                android:textSize="14sp"/>
+
+            <Button
+                android:id="@+id/btnFavoris"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:text="Favoris"
+                android:textSize="14sp"
+                android:background="@drawable/bg_favoris_btn"
+                android:textColor="#000000"/>
+        </LinearLayout>
+
+        <!-- RecyclerView (Personne 2) -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewNotes"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="8dp"/>
+
+        <!-- Message liste vide (Personne 2) -->
+        <TextView
+            android:id="@+id/tvAucuneNote"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Aucune notes"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#828282"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <!-- Palette de couleurs (Personne 3 — TOI) -->
+    <LinearLayout
+        android:id="@+id/colorPalette"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
+        android:visibility="gone">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton android:id="@+id/colorGreen"
+            android:layout_width="40dp" android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/circle_green"/>
+
+        <ImageButton android:id="@+id/colorRed"
+            android:layout_width="40dp" android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/circle_red"/>
+
+        <ImageButton android:id="@+id/colorBlue"
+            android:layout_width="40dp" android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/circle_blue"/>
+
+        <ImageButton android:id="@+id/colorYellow"
+            android:layout_width="40dp" android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/circle_yellow"/>
+
+        <ImageButton android:id="@+id/colorOrange"
+            android:layout_width="40dp" android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/circle_orange"/>
+
+        <ImageButton android:id="@+id/colorGray"
+            android:layout_width="40dp" android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/circle_gray"/>
+
+    </LinearLayout>
+
+    <!-- Bouton flottant + -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="#000000"
+        app:tint="#FFFFFF"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
