@@ -21,13 +21,13 @@ public class NoteFormActivity extends AppCompatActivity {
     public static final String EXTRA_COLOR   = "note_color";
     public static final String EXTRA_NOTE_ID = "note_id";
 
-    private EditText     etTitle;
-    private EditText     etContent;
-    private Button       btnSave;
+    private EditText etTitle;
+    private EditText etContent;
+    private Button btnSave;
     private LinearLayout noteCard;
 
     private String selectedColor;
-    private Note   existingNote;
+    private Note existingNote;
     private NoteDAO noteDAO;
 
     @Override
@@ -44,11 +44,19 @@ public class NoteFormActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        etTitle   = findViewById(R.id.etTitle);
+        etTitle  = findViewById(R.id.etTitle);
         etContent = findViewById(R.id.etContent);
-        btnSave   = findViewById(R.id.btnSave);
-        noteCard  = findViewById(R.id.noteCard);
+        btnSave  = findViewById(R.id.btnSave);
+        noteCard = findViewById(R.id.noteCard);
+
         btnSave.setOnClickListener(v -> onSaveClicked());
+
+        findViewById(R.id.color_vert).setOnClickListener(v -> changerCouleur("#219653"));
+        findViewById(R.id.color_rouge).setOnClickListener(v -> changerCouleur("#EB5757"));
+        findViewById(R.id.color_bleu).setOnClickListener(v -> changerCouleur("#2F80ED"));
+        findViewById(R.id.color_jaune).setOnClickListener(v -> changerCouleur("#F2C94C"));
+        findViewById(R.id.color_orange).setOnClickListener(v -> changerCouleur("#F2994A"));
+        findViewById(R.id.color_gris).setOnClickListener(v -> changerCouleur("#828282"));
     }
 
     private void readIntentExtras() {
@@ -63,7 +71,7 @@ public class NoteFormActivity extends AppCompatActivity {
                 finish();
             }
         } else {
-            existingNote  = null;
+            existingNote = null;
             selectedColor = intent.getStringExtra(EXTRA_COLOR);
             if (selectedColor == null || selectedColor.isEmpty()) {
                 selectedColor = "#219653";
@@ -79,6 +87,11 @@ public class NoteFormActivity extends AppCompatActivity {
         } else {
             btnSave.setText("Créer");
         }
+    }
+
+    private void changerCouleur(String couleur) {
+        selectedColor = couleur;
+        applyColorToCard();
     }
 
     private void applyColorToCard() {

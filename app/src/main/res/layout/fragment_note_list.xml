@@ -6,35 +6,79 @@
     android:layout_height="match_parent"
     android:background="#F8F8F8">
 
-    <!-- ÉTAT VIDE : visible quand il n'y a aucune note -->
     <LinearLayout
-        android:id="@+id/layout_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- BARRE DE RECHERCHE + BOUTON FAVORIS -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aucune notes"
-            android:textColor="#9E9E9E"
-            android:textSize="16sp" />
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/et_recherche"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Rechercher"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:drawablePadding="8dp"
+                android:background="@android:drawable/edit_text"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="14sp"/>
+
+            <Button
+                android:id="@+id/btn_favoris"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Favoris"
+                android:textSize="14sp"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="#000000"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+        </LinearLayout>
+
+        <!-- ÉTAT VIDE -->
+        <LinearLayout
+            android:id="@+id/layout_empty"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aucune notes"
+                android:textColor="#9E9E9E"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <!-- LISTE -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_notes"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:paddingBottom="80dp"
+            android:clipToPadding="false"/>
 
     </LinearLayout>
 
-    <!-- LISTE : RecyclerView des notes -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_notes"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="8dp"
-        android:paddingBottom="80dp"
-        android:clipToPadding="false"
-        android:visibility="visible" />
-
-    <!-- Bouton flottant (+) pour créer une note -->
+    <!-- Bouton flottant -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_note"
         android:layout_width="wrap_content"
@@ -43,7 +87,7 @@
         android:layout_margin="16dp"
         android:contentDescription="Ajouter une note"
         android:src="@drawable/ic_add"
-        app:backgroundTint="#2F80ED"
-        app:tint="@android:color/white" />
+        app:backgroundTint="#000000"
+        app:tint="@android:color/white"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

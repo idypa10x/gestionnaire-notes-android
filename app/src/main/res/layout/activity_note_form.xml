@@ -46,11 +46,70 @@
 
     </LinearLayout>
 
+    <!-- PALETTE DE COULEURS -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="12dp"
+        android:paddingBottom="4dp">
+
+        <View
+            android:id="@+id/color_vert"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="6dp"
+            android:background="@drawable/color_circle"
+            android:backgroundTint="#219653"/>
+
+        <View
+            android:id="@+id/color_rouge"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="6dp"
+            android:background="@drawable/color_circle"
+            android:backgroundTint="#EB5757"/>
+
+        <View
+            android:id="@+id/color_bleu"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="6dp"
+            android:background="@drawable/color_circle"
+            android:backgroundTint="#2F80ED"/>
+
+        <View
+            android:id="@+id/color_jaune"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="6dp"
+            android:background="@drawable/color_circle"
+            android:backgroundTint="#F2C94C"/>
+
+        <View
+            android:id="@+id/color_orange"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="6dp"
+            android:background="@drawable/color_circle"
+            android:backgroundTint="#F2994A"/>
+
+        <View
+            android:id="@+id/color_gris"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="6dp"
+            android:background="@drawable/color_circle"
+            android:backgroundTint="#828282"/>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Créer"
         android:textSize="16sp"
         android:textStyle="bold"
