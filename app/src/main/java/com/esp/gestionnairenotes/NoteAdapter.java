@@ -63,8 +63,31 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
                 note.isFavori() ? R.drawable.ic_star_filled : R.drawable.ic_star_outline
         );
 
+        // Simple clic → ouvrir la note
         holder.itemView.setOnClickListener(v -> listener.onNoteClick(note));
-        holder.ivFavorite.setOnClickListener(v -> listener.onFavoriteClick(note, holder.getAdapterPosition()));
+
+// Double clic → basculer favori
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            private int clickCount = 0;
+            private final android.os.Handler handler = new android.os.Handler();
+
+            @Override
+            public void onClick(View v) {
+                clickCount++;
+                if (clickCount == 1) {
+                    handler.postDelayed(() -> {
+                        if (clickCount == 1) {
+                            listener.onNoteClick(note);
+                        }
+                        clickCount = 0;
+                    }, 300);
+                } else if (clickCount == 2) {
+                    handler.removeCallbacksAndMessages(null);
+                    listener.onFavoriteClick(note, holder.getAdapterPosition());
+                    clickCount = 0;
+                }
+            }
+        });
     }
 
     @Override
