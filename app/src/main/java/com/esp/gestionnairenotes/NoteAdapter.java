@@ -1,15 +1,18 @@
-
 package com.esp.gestionnairenotes;
 
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
@@ -17,6 +20,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     public interface OnNoteClickListener {
         void onNoteClick(Note note);
         void onFavoriteClick(Note note, int position);
+        void onNoteDoubleClick(Note note);   // AJOUT Personne 5 : double clic = favori
     }
 
     private List<Note> noteList;
@@ -38,7 +42,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     @Override
     public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
         Note note = noteList.get(position);
-
         holder.tvTitle.setText(note.getTitre());
         holder.tvDate.setText(note.getDate());
 
@@ -63,8 +66,39 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
                 note.isFavori() ? R.drawable.ic_star_filled : R.drawable.ic_star_outline
         );
 
-        holder.itemView.setOnClickListener(v -> listener.onNoteClick(note));
-        holder.ivFavorite.setOnClickListener(v -> listener.onFavoriteClick(note, holder.getAdapterPosition()));
+        // ===== AJOUT Personne 5 : clic simple + double clic sur la carte =====
+        // Double clic = (de)favori. Clic simple = ouverture (comportement existant).
+        // On route les deux via GestureDetector (un setOnClickListener classique
+        // entrerait en conflit avec la detection du double clic).
+        GestureDetector gestureDetector = new GestureDetector(holder.itemView.getContext(),
+                new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onDown(MotionEvent e) {
+                        return true;
+                    }
+                    @Override
+                    public boolean onSingleTapConfirmed(MotionEvent e) {
+                        listener.onNoteClick(note);
+                        return true;
+                    }
+                    @Override
+                    public boolean onDoubleTap(MotionEvent e) {
+                        listener.onNoteDoubleClick(note);
+                        return true;
+                    }
+                });
+        holder.itemView.setOnTouchListener((v, event) -> {
+            boolean handled = gestureDetector.onTouchEvent(event);
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                v.performClick();
+            }
+            return handled;
+        });
+        // ===== fin ajout Personne 5 =====
+
+        // Conserve (Personne 2) : clic sur l'etoile bascule aussi le favori.
+        holder.ivFavorite.setOnClickListener(v ->
+                listener.onFavoriteClick(note, holder.getAdapterPosition()));
     }
 
     @Override
